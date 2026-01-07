@@ -1,0 +1,23 @@
+{
+  "name": "search-handbooks-commands",
+  "version": "1.0.0",
+  "description": "WordPress plugin for searching developer handbooks via keyboard shortcuts and command palette",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "keywords": [
+    "wordpress",
+    "gutenberg",
+    "commands",
+    "handbook",
+    "search",
+    "shortcuts"
+  ],
+  "devDependencies": {
+    "@wordpress/scripts": "^27.0.0"
+  },
+  "dependencies": {
+    "@wordpress/icons": "^11.4.0"
+  }
+}
