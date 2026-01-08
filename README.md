@@ -1,8 +1,8 @@
 # Search Resources Commands
 
-[![](https://img.shields.io/badge/playground-live%20preview-blue?logo=wordpress)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/juanma-wp/search-handbooks-commands/refs/heads/main/_playground/blueprint.json)
+[![](https://img.shields.io/badge/playground-live%20preview-blue?logo=wordpress)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/juanma-wp/search-resources-commands/refs/heads/main/_playground/blueprint.json)
 
-WordPress plugin for searching WordPress resources (handbooks, Learn WordPress, WordPress TV) via keyboard shortcuts and command palette (see [video](https://youtu.be/je_wUMS5aEc) or [live demo](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/juanma-wp/search-handbooks-commands/refs/heads/main/_playground/blueprint.json)).
+WordPress plugin for searching WordPress resources (handbooks, Learn WordPress, WordPress TV) via keyboard shortcuts and command palette (see [video](https://youtu.be/je_wUMS5aEc) or [live demo](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/juanma-wp/search-resources-commands/refs/heads/main/_playground/blueprint.json)).
 
 [![](./assets/snapshot.png)](https://youtu.be/je_wUMS5aEc)
 
@@ -11,7 +11,7 @@ WordPress plugin for searching WordPress resources (handbooks, Learn WordPress, 
 
 ## Features
 
-- **Keyboard Shortcuts**: Press `Cmd+Option+H` (Mac) or `Ctrl+Alt+H` (Windows) to activate handbook mode, then press:
+- **Keyboard Shortcuts**: Press `Cmd+Option+H` (Mac) or `Ctrl+Alt+H` (Windows) to activate resource mode, then press:
   - `B` - Search Block Editor Handbook
   - `T` - Search Theme Handbook
   - `P` - Search Plugin Handbook
@@ -42,7 +42,7 @@ WordPress plugin for searching WordPress resources (handbooks, Learn WordPress, 
 ## Usage
 
 ### Method 1: Keyboard Shortcuts
-1. Press `Cmd+Option+H` (activates handbook mode)
+1. Press `Cmd+Option+H` (activates resource mode)
 2. Press `B` (for Block Editor handbook)
 3. Type your search term in the command palette
 4. Press Enter to search

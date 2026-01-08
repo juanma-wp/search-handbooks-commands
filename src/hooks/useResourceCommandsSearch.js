@@ -26,13 +26,13 @@ export const useResourceCommandsSearch = ({ search: searchTerm }) => {
 			return [];
 		}
 
-		// Check if search term ends with a handbook prefix
-		const matchedHandbooks = ALL_RESOURCES.filter((handbook) =>
-			searchTerm.endsWith(` ${handbook.prefix}`)
+		// Check if search term ends with a resource prefix
+		const matchedResources = ALL_RESOURCES.filter((resource) =>
+			searchTerm.endsWith(` ${resource.prefix}`)
 		);
 
 		// Generate executable search commands when a prefix is detected
-		return matchedHandbooks.flatMap((resource) => {
+		return matchedResources.flatMap((resource) => {
 			// Extract the actual query by removing the prefix
 			const query = searchTerm.slice(0, -(resource.prefix.length + 1)).trim();
 

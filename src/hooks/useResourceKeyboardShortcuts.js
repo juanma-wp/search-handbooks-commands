@@ -18,10 +18,10 @@ import { ALL_RESOURCES } from "../constants/resources";
 import { prefillCommandPalette } from "../utils/commandPaletteHelper";
 
 /**
- * Timeout duration (in milliseconds) for handbook mode auto-deactivation.
+ * Timeout duration (in milliseconds) for resource mode auto-deactivation.
  * @constant {number}
  */
-const HANDBOOK_MODE_TIMEOUT = 3000;
+const RESOURCE_MODE_TIMEOUT = 3000;
 
 /**
  * Hook that manages two-step keyboard shortcuts for resource search.
@@ -33,12 +33,12 @@ export const useResourceKeyboardShortcuts = () => {
 	const { createInfoNotice } = useDispatch(noticesStore);
 	const { registerShortcut } = useDispatch(keyboardShortcutsStore);
 
-	const handbookModeActive = useRef(false);
-	const handbookModeTimeout = useRef(null);
+	const resourceModeActive = useRef(false);
+	const resourceModeTimeout = useRef(null);
 
 	/**
 	 * Register the primary shortcut: Cmd+Option+H
-	 * This activates handbook mode and waits for secondary key press.
+	 * This activates resource mode and waits for secondary key press.
 	 */
 	useEffect(() => {
 		registerShortcut({
@@ -54,13 +54,13 @@ export const useResourceKeyboardShortcuts = () => {
 
 	/**
 	 * Handle Cmd+Option+H activation.
-	 * Shows visual feedback and activates handbook mode with auto-timeout.
+	 * Shows visual feedback and activates resource mode with auto-timeout.
 	 */
 	useShortcut(
 		'search-resources-commands/resource-mode',
 		(event) => {
 			event.preventDefault();
-			handbookModeActive.current = true;
+			resourceModeActive.current = true;
 
 			// Provide visual feedback to user
 			createInfoNotice(
@@ -72,56 +72,56 @@ export const useResourceKeyboardShortcuts = () => {
 			);
 
 			// Clear any existing timeout
-			if (handbookModeTimeout.current) {
-				clearTimeout(handbookModeTimeout.current);
+			if (resourceModeTimeout.current) {
+				clearTimeout(resourceModeTimeout.current);
 			}
 
 			// Auto-deactivate after timeout period
-			handbookModeTimeout.current = setTimeout(() => {
-				handbookModeActive.current = false;
-			}, HANDBOOK_MODE_TIMEOUT);
+			resourceModeTimeout.current = setTimeout(() => {
+				resourceModeActive.current = false;
+			}, RESOURCE_MODE_TIMEOUT);
 		},
 		{ bindGlobal: true }
 	);
 
 	/**
-	 * Listen for secondary key press (B/T/P/R) when handbook mode is active.
-	 * Opens command palette with pre-filled handbook prefix.
+	 * Listen for secondary key press (B/T/P/R/L/V) when resource mode is active.
+	 * Opens command palette with pre-filled resource prefix.
 	 */
 	useEffect(() => {
 		const handleKeyDown = (event) => {
-			// Only process if handbook mode is active
-			if (!handbookModeActive.current) {
+			// Only process if resource mode is active
+			if (!resourceModeActive.current) {
 				return;
 			}
 
-			// Find matching handbook by key press
-			const handbook = ALL_RESOURCES.find(h => h.key === event.key.toLowerCase());
+			// Find matching resource by key press
+			const resource = ALL_RESOURCES.find(h => h.key === event.key.toLowerCase());
 
-			if (!handbook) {
+			if (!resource) {
 				return;
 			}
 
 			event.preventDefault();
 			event.stopPropagation();
 
-			// Deactivate handbook mode
-			handbookModeActive.current = false;
-			if (handbookModeTimeout.current) {
-				clearTimeout(handbookModeTimeout.current);
+			// Deactivate resource mode
+			resourceModeActive.current = false;
+			if (resourceModeTimeout.current) {
+				clearTimeout(resourceModeTimeout.current);
 			}
 
 			// Open command palette
 			open();
 
-			// Pre-fill with handbook prefix
-			prefillCommandPalette(handbook.prefix);
+			// Pre-fill with resource prefix
+			prefillCommandPalette(resource.prefix);
 
 			// Show usage hint
-			const resourceType = handbook.type === 'handbook' ? 'Handbook' : '';
+			const resourceType = resource.type === 'handbook' ? 'Handbook' : '';
 			const message = resourceType
-				? `Type your search and press Enter to search ${handbook.name} ${resourceType}`
-				: `Type your search and press Enter to search ${handbook.name}`;
+				? `Type your search and press Enter to search ${resource.name} ${resourceType}`
+				: `Type your search and press Enter to search ${resource.name}`;
 
 			createInfoNotice(
 				__(message, 'search-resources-commands'),
@@ -137,8 +137,8 @@ export const useResourceKeyboardShortcuts = () => {
 
 		return () => {
 			document.removeEventListener('keydown', handleKeyDown, true);
-			if (handbookModeTimeout.current) {
-				clearTimeout(handbookModeTimeout.current);
+			if (resourceModeTimeout.current) {
+				clearTimeout(resourceModeTimeout.current);
 			}
 		};
 	}, []);

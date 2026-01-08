@@ -1737,11 +1737,11 @@ const useResourceCommandsSearch = ({
       return [];
     }
 
-    // Check if search term ends with a handbook prefix
-    const matchedHandbooks = _constants_resources__WEBPACK_IMPORTED_MODULE_3__.ALL_RESOURCES.filter(handbook => searchTerm.endsWith(` ${handbook.prefix}`));
+    // Check if search term ends with a resource prefix
+    const matchedResources = _constants_resources__WEBPACK_IMPORTED_MODULE_3__.ALL_RESOURCES.filter(resource => searchTerm.endsWith(` ${resource.prefix}`));
 
     // Generate executable search commands when a prefix is detected
-    return matchedHandbooks.flatMap(resource => {
+    return matchedResources.flatMap(resource => {
       // Extract the actual query by removing the prefix
       const query = searchTerm.slice(0, -(resource.prefix.length + 1)).trim();
 
@@ -1819,10 +1819,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Timeout duration (in milliseconds) for handbook mode auto-deactivation.
+ * Timeout duration (in milliseconds) for resource mode auto-deactivation.
  * @constant {number}
  */
-const HANDBOOK_MODE_TIMEOUT = 3000;
+const RESOURCE_MODE_TIMEOUT = 3000;
 
 /**
  * Hook that manages two-step keyboard shortcuts for resource search.
@@ -1839,12 +1839,12 @@ const useResourceKeyboardShortcuts = () => {
   const {
     registerShortcut
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)(_wordpress_keyboard_shortcuts__WEBPACK_IMPORTED_MODULE_1__.store);
-  const handbookModeActive = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
-  const handbookModeTimeout = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  const resourceModeActive = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
+  const resourceModeTimeout = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   /**
    * Register the primary shortcut: Cmd+Option+H
-   * This activates handbook mode and waits for secondary key press.
+   * This activates resource mode and waits for secondary key press.
    */
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     registerShortcut({
@@ -1860,11 +1860,11 @@ const useResourceKeyboardShortcuts = () => {
 
   /**
    * Handle Cmd+Option+H activation.
-   * Shows visual feedback and activates handbook mode with auto-timeout.
+   * Shows visual feedback and activates resource mode with auto-timeout.
    */
   (0,_wordpress_keyboard_shortcuts__WEBPACK_IMPORTED_MODULE_1__.useShortcut)('search-resources-commands/resource-mode', event => {
     event.preventDefault();
-    handbookModeActive.current = true;
+    resourceModeActive.current = true;
 
     // Provide visual feedback to user
     createInfoNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Resource mode active. Press B (Block Editor), T (Theme), P (Plugin), R (REST API), L (Learn), or V (WordPress TV)', 'search-resources-commands'), {
@@ -1873,52 +1873,52 @@ const useResourceKeyboardShortcuts = () => {
     });
 
     // Clear any existing timeout
-    if (handbookModeTimeout.current) {
-      clearTimeout(handbookModeTimeout.current);
+    if (resourceModeTimeout.current) {
+      clearTimeout(resourceModeTimeout.current);
     }
 
     // Auto-deactivate after timeout period
-    handbookModeTimeout.current = setTimeout(() => {
-      handbookModeActive.current = false;
-    }, HANDBOOK_MODE_TIMEOUT);
+    resourceModeTimeout.current = setTimeout(() => {
+      resourceModeActive.current = false;
+    }, RESOURCE_MODE_TIMEOUT);
   }, {
     bindGlobal: true
   });
 
   /**
-   * Listen for secondary key press (B/T/P/R) when handbook mode is active.
-   * Opens command palette with pre-filled handbook prefix.
+   * Listen for secondary key press (B/T/P/R/L/V) when resource mode is active.
+   * Opens command palette with pre-filled resource prefix.
    */
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const handleKeyDown = event => {
-      // Only process if handbook mode is active
-      if (!handbookModeActive.current) {
+      // Only process if resource mode is active
+      if (!resourceModeActive.current) {
         return;
       }
 
-      // Find matching handbook by key press
-      const handbook = _constants_resources__WEBPACK_IMPORTED_MODULE_6__.ALL_RESOURCES.find(h => h.key === event.key.toLowerCase());
-      if (!handbook) {
+      // Find matching resource by key press
+      const resource = _constants_resources__WEBPACK_IMPORTED_MODULE_6__.ALL_RESOURCES.find(h => h.key === event.key.toLowerCase());
+      if (!resource) {
         return;
       }
       event.preventDefault();
       event.stopPropagation();
 
-      // Deactivate handbook mode
-      handbookModeActive.current = false;
-      if (handbookModeTimeout.current) {
-        clearTimeout(handbookModeTimeout.current);
+      // Deactivate resource mode
+      resourceModeActive.current = false;
+      if (resourceModeTimeout.current) {
+        clearTimeout(resourceModeTimeout.current);
       }
 
       // Open command palette
       open();
 
-      // Pre-fill with handbook prefix
-      (0,_utils_commandPaletteHelper__WEBPACK_IMPORTED_MODULE_7__.prefillCommandPalette)(handbook.prefix);
+      // Pre-fill with resource prefix
+      (0,_utils_commandPaletteHelper__WEBPACK_IMPORTED_MODULE_7__.prefillCommandPalette)(resource.prefix);
 
       // Show usage hint
-      const resourceType = handbook.type === 'handbook' ? 'Handbook' : '';
-      const message = resourceType ? `Type your search and press Enter to search ${handbook.name} ${resourceType}` : `Type your search and press Enter to search ${handbook.name}`;
+      const resourceType = resource.type === 'handbook' ? 'Handbook' : '';
+      const message = resourceType ? `Type your search and press Enter to search ${resource.name} ${resourceType}` : `Type your search and press Enter to search ${resource.name}`;
       createInfoNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)(message, 'search-resources-commands'), {
         type: 'snackbar',
         isDismissible: true
@@ -1929,8 +1929,8 @@ const useResourceKeyboardShortcuts = () => {
     document.addEventListener('keydown', handleKeyDown, true);
     return () => {
       document.removeEventListener('keydown', handleKeyDown, true);
-      if (handbookModeTimeout.current) {
-        clearTimeout(handbookModeTimeout.current);
+      if (resourceModeTimeout.current) {
+        clearTimeout(resourceModeTimeout.current);
       }
     };
   }, []);
@@ -1954,11 +1954,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hooks_useResourceKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/useResourceKeyboardShortcuts */ "./src/hooks/useResourceKeyboardShortcuts.js");
 /* harmony import */ var _hooks_useResourceCommands__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hooks/useResourceCommands */ "./src/hooks/useResourceCommands.js");
 /**
- * Main component for Search Handbooks Commands plugin.
+ * Main component for Search Resources Commands plugin.
  *
- * This component orchestrates handbook search functionality through:
+ * This component orchestrates resource search functionality through:
  * - Dynamic command generation based on search input
- * - Keyboard shortcuts (Cmd+Option+H followed by B/T/P/R)
+ * - Keyboard shortcuts (Cmd+Option+H followed by B/T/P/R/L/V)
  * - Static commands visible in the command palette
  *
  * The component itself renders nothing (returns null) but registers
@@ -1974,27 +1974,27 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Main plugin component.
  *
- * Coordinates all handbook search features by:
+ * Coordinates all resource search features by:
  * 1. Registering dynamic search command loader
  * 2. Setting up keyboard shortcuts
- * 3. Registering static handbook commands
+ * 3. Registering static resource commands
  *
  * Component only registers hooks and doesn't render anything.
  */
-const SearchHandbooksCommands = () => {
+const SearchResourcesCommands = () => {
   // Register dynamic search commands that appear based on user input
   (0,_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__.useCommandLoader)({
-    name: "search-handbooks-commands/handbooks-search-shortcuts",
+    name: "search-resources-commands/resources-search-shortcuts",
     hook: (0,_hooks_useResourceCommandsSearch__WEBPACK_IMPORTED_MODULE_1__.getResourceCommandsSearch)()
   });
 
-  // Set up two-step keyboard shortcuts (Cmd+Option+H + B/T/P/R)
+  // Set up two-step keyboard shortcuts (Cmd+Option+H + B/T/P/R/L/V)
   (0,_hooks_useResourceKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_2__.useResourceKeyboardShortcuts)();
 
-  // Register static commands for each handbook
+  // Register static commands for each resource
   (0,_hooks_useResourceCommands__WEBPACK_IMPORTED_MODULE_3__.useResourceCommands)();
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchHandbooksCommands);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchResourcesCommands);
 
 /***/ },
 
@@ -2045,7 +2045,7 @@ const setReactInputValue = (inputElement, value) => {
 };
 
 /**
- * Pre-fills the command palette with a search term and handbook prefix.
+ * Pre-fills the command palette with a search term and resource prefix.
  *
  * This function:
  * 1. Finds the command palette input element
@@ -2053,19 +2053,19 @@ const setReactInputValue = (inputElement, value) => {
  * 3. Dispatches an input event to trigger React's onChange handlers
  * 4. Focuses the input and selects the placeholder text
  *
- * @param {string} handbookPrefix - The handbook prefix (e.g., "!b", "!t")
+ * @param {string} resourcePrefix - The resource prefix (e.g., "!b", "!t")
  * @param {number} [delay=100] - Delay in milliseconds before executing
  * @returns {number} Timeout ID for potential cleanup
  */
-const prefillCommandPalette = (handbookPrefix, delay = 100) => {
+const prefillCommandPalette = (resourcePrefix, delay = 100) => {
   return setTimeout(() => {
     const commandInput = document.querySelector(COMMAND_PALETTE_INPUT_SELECTOR);
     if (!commandInput) {
       return;
     }
 
-    // Pre-fill with "search" + handbook prefix
-    const searchText = `search ${handbookPrefix}`;
+    // Pre-fill with "search" + resource prefix
+    const searchText = `search ${resourcePrefix}`;
 
     // Set value using helper that bypasses React's controlled input
     setReactInputValue(commandInput, searchText);

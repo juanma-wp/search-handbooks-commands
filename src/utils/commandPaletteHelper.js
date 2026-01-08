@@ -37,7 +37,7 @@ const setReactInputValue = (inputElement, value) => {
 };
 
 /**
- * Pre-fills the command palette with a search term and handbook prefix.
+ * Pre-fills the command palette with a search term and resource prefix.
  *
  * This function:
  * 1. Finds the command palette input element
@@ -45,11 +45,11 @@ const setReactInputValue = (inputElement, value) => {
  * 3. Dispatches an input event to trigger React's onChange handlers
  * 4. Focuses the input and selects the placeholder text
  *
- * @param {string} handbookPrefix - The handbook prefix (e.g., "!b", "!t")
+ * @param {string} resourcePrefix - The resource prefix (e.g., "!b", "!t")
  * @param {number} [delay=100] - Delay in milliseconds before executing
  * @returns {number} Timeout ID for potential cleanup
  */
-export const prefillCommandPalette = (handbookPrefix, delay = 100) => {
+export const prefillCommandPalette = (resourcePrefix, delay = 100) => {
 	return setTimeout(() => {
 		const commandInput = document.querySelector(COMMAND_PALETTE_INPUT_SELECTOR);
 
@@ -57,8 +57,8 @@ export const prefillCommandPalette = (handbookPrefix, delay = 100) => {
 			return;
 		}
 
-		// Pre-fill with "search" + handbook prefix
-		const searchText = `search ${handbookPrefix}`;
+		// Pre-fill with "search" + resource prefix
+		const searchText = `search ${resourcePrefix}`;
 
 		// Set value using helper that bypasses React's controlled input
 		setReactInputValue(commandInput, searchText);

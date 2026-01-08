@@ -14,7 +14,7 @@
 			"step": "installPlugin",
 			"pluginData": {
 				"resource": "git:directory",
-				"url": "https://github.com/juanma-wp/search-handbooks-commands",
+				"url": "https://github.com/juanma-wp/search-resources-commands",
 				"ref": "HEAD",
 				"path": "/"
 			},
