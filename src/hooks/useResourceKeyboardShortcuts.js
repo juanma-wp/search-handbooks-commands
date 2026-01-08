@@ -1,11 +1,11 @@
 /**
- * Custom hook for managing handbook keyboard shortcuts.
+ * Custom hook for managing resource keyboard shortcuts.
  *
  * Implements a two-step shortcut system:
- * 1. Cmd+Option+H activates "handbook mode" (shows notice, 3-second timeout)
- * 2. Press B/T/P/R to open command palette with pre-filled handbook search
+ * 1. Cmd+Option+H activates "resource mode" (shows notice, 3-second timeout)
+ * 2. Press B/T/P/R/L/V to open command palette with pre-filled resource search
  *
- * @module useHandbookKeyboardShortcuts
+ * @module useResourceKeyboardShortcuts
  */
 import { useEffect, useRef } from "@wordpress/element";
 import { useShortcut } from "@wordpress/keyboard-shortcuts";
@@ -14,7 +14,7 @@ import { store as commandsStore } from "@wordpress/commands";
 import { store as noticesStore } from "@wordpress/notices";
 import { store as keyboardShortcutsStore } from "@wordpress/keyboard-shortcuts";
 import { __ } from "@wordpress/i18n";
-import { ALL_RESOURCES } from "../constants/handbooks";
+import { ALL_RESOURCES } from "../constants/resources";
 import { prefillCommandPalette } from "../utils/commandPaletteHelper";
 
 /**
@@ -24,11 +24,11 @@ import { prefillCommandPalette } from "../utils/commandPaletteHelper";
 const HANDBOOK_MODE_TIMEOUT = 3000;
 
 /**
- * Hook that manages two-step keyboard shortcuts for handbook search.
+ * Hook that manages two-step keyboard shortcuts for resource search.
  *
  * @returns {void}
  */
-export const useHandbookKeyboardShortcuts = () => {
+export const useResourceKeyboardShortcuts = () => {
 	const { open } = useDispatch(commandsStore);
 	const { createInfoNotice } = useDispatch(noticesStore);
 	const { registerShortcut } = useDispatch(keyboardShortcutsStore);

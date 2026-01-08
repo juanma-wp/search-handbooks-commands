@@ -1533,69 +1533,9 @@ if (false) // removed by dead control flow
 
 /***/ },
 
-/***/ "./src/SearchHandbooksCommands.js"
-/*!****************************************!*\
-  !*** ./src/SearchHandbooksCommands.js ***!
-  \****************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/commands */ "@wordpress/commands");
-/* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _hooks_useHandbookCommandsSearch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hooks/useHandbookCommandsSearch */ "./src/hooks/useHandbookCommandsSearch.js");
-/* harmony import */ var _hooks_useHandbookKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/useHandbookKeyboardShortcuts */ "./src/hooks/useHandbookKeyboardShortcuts.js");
-/* harmony import */ var _hooks_useHandbookCommands__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hooks/useHandbookCommands */ "./src/hooks/useHandbookCommands.js");
-/**
- * Main component for Search Handbooks Commands plugin.
- *
- * This component orchestrates handbook search functionality through:
- * - Dynamic command generation based on search input
- * - Keyboard shortcuts (Cmd+Option+H followed by B/T/P/R)
- * - Static commands visible in the command palette
- *
- * The component itself renders nothing (returns null) but registers
- * all necessary commands, shortcuts, and event handlers.
- *
- * @module SearchHandbooksCommands
- */
-
-
-
-
-
-/**
- * Main plugin component.
- *
- * Coordinates all handbook search features by:
- * 1. Registering dynamic search command loader
- * 2. Setting up keyboard shortcuts
- * 3. Registering static handbook commands
- *
- * Component only registers hooks and doesn't render anything.
- */
-const SearchHandbooksCommands = () => {
-  // Register dynamic search commands that appear based on user input
-  (0,_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__.useCommandLoader)({
-    name: "search-handbooks-commands/handbooks-search-shortcuts",
-    hook: (0,_hooks_useHandbookCommandsSearch__WEBPACK_IMPORTED_MODULE_1__.getHandbookCommandsSearch)()
-  });
-
-  // Set up two-step keyboard shortcuts (Cmd+Option+H + B/T/P/R)
-  (0,_hooks_useHandbookKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_2__.useHandbookKeyboardShortcuts)();
-
-  // Register static commands for each handbook
-  (0,_hooks_useHandbookCommands__WEBPACK_IMPORTED_MODULE_3__.useHandbookCommands)();
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchHandbooksCommands);
-
-/***/ },
-
-/***/ "./src/constants/handbooks.js"
+/***/ "./src/constants/resources.js"
 /*!************************************!*\
-  !*** ./src/constants/handbooks.js ***!
+  !*** ./src/constants/resources.js ***!
   \************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -1678,15 +1618,15 @@ const ALL_RESOURCES = RESOURCES;
 
 /***/ },
 
-/***/ "./src/hooks/useHandbookCommands.js"
+/***/ "./src/hooks/useResourceCommands.js"
 /*!******************************************!*\
-  !*** ./src/hooks/useHandbookCommands.js ***!
+  !*** ./src/hooks/useResourceCommands.js ***!
   \******************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   useHandbookCommands: () => (/* binding */ useHandbookCommands)
+/* harmony export */   useResourceCommands: () => (/* binding */ useResourceCommands)
 /* harmony export */ });
 /* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/commands */ "@wordpress/commands");
 /* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__);
@@ -1696,16 +1636,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_notices__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _constants_handbooks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/handbooks */ "./src/constants/handbooks.js");
+/* harmony import */ var _constants_resources__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/resources */ "./src/constants/resources.js");
 /**
- * Custom hook for registering individual handbook search commands.
+ * Custom hook for registering individual resource search commands.
  *
- * Creates command palette entries for each handbook that:
+ * Creates command palette entries for each resource that:
  * - Appear in the command palette by default
  * - Guide users on how to use the shortcut syntax
  * - Open the command palette with usage instructions
  *
- * @module useHandbookCommands
+ * @module useResourceCommands
  */
 
 
@@ -1715,21 +1655,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Registers static commands for each handbook.
+ * Registers static commands for each resource.
  *
  * These commands are always visible in the command palette and serve as
  * entry points for users who don't know about the shortcut syntax.
  *
  * @returns {void}
  */
-const useHandbookCommands = () => {
+const useResourceCommands = () => {
   const {
     open
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useDispatch)(_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__.store);
   const {
     createInfoNotice
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_2__.store);
-  const commands = _constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.ALL_RESOURCES.map(resource => {
+  const commands = _constants_resources__WEBPACK_IMPORTED_MODULE_4__.ALL_RESOURCES.map(resource => {
     const resourceType = resource.type === 'handbook' ? 'Handbook' : '';
     const label = resourceType ? `Search ${resource.name} ${resourceType}` : `Search ${resource.name}`;
     return {
@@ -1750,31 +1690,31 @@ const useHandbookCommands = () => {
 
 /***/ },
 
-/***/ "./src/hooks/useHandbookCommandsSearch.js"
+/***/ "./src/hooks/useResourceCommandsSearch.js"
 /*!************************************************!*\
-  !*** ./src/hooks/useHandbookCommandsSearch.js ***!
+  !*** ./src/hooks/useResourceCommandsSearch.js ***!
   \************************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getHandbookCommandsSearch: () => (/* binding */ getHandbookCommandsSearch),
-/* harmony export */   useHandbookCommandsSearch: () => (/* binding */ useHandbookCommandsSearch)
+/* harmony export */   getResourceCommandsSearch: () => (/* binding */ getResourceCommandsSearch),
+/* harmony export */   useResourceCommandsSearch: () => (/* binding */ useResourceCommandsSearch)
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/search.js");
-/* harmony import */ var _constants_handbooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/handbooks */ "./src/constants/handbooks.js");
+/* harmony import */ var _constants_resources__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/resources */ "./src/constants/resources.js");
 /**
- * Custom hook for dynamic handbook search commands.
+ * Custom hook for dynamic resource search commands.
  *
  * This hook processes search terms to:
- * 1. Detect handbook shortcuts (e.g., "query !b" for Block Editor)
+ * 1. Detect resource shortcuts (e.g., "query !b" for Block Editor)
  * 2. Generate executable search commands when shortcuts are matched
  *
- * @module useHandbookCommandsSearch
+ * @module useResourceCommandsSearch
  */
 
 
@@ -1788,7 +1728,7 @@ __webpack_require__.r(__webpack_exports__);
  * @param {string} params.search - Current search term from command palette
  * @returns {Object} Object containing commands array and loading state
  */
-const useHandbookCommandsSearch = ({
+const useResourceCommandsSearch = ({
   search: searchTerm
 }) => {
   const commands = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {
@@ -1798,7 +1738,7 @@ const useHandbookCommandsSearch = ({
     }
 
     // Check if search term ends with a handbook prefix
-    const matchedHandbooks = _constants_handbooks__WEBPACK_IMPORTED_MODULE_3__.ALL_RESOURCES.filter(handbook => searchTerm.endsWith(` ${handbook.prefix}`));
+    const matchedHandbooks = _constants_resources__WEBPACK_IMPORTED_MODULE_3__.ALL_RESOURCES.filter(handbook => searchTerm.endsWith(` ${handbook.prefix}`));
 
     // Generate executable search commands when a prefix is detected
     return matchedHandbooks.flatMap(resource => {
@@ -1829,21 +1769,21 @@ const useHandbookCommandsSearch = ({
 /**
  * Factory function to create the hook for useCommandLoader.
  *
- * @returns {Function} The useHandbookCommandsSearch hook
+ * @returns {Function} The useResourceCommandsSearch hook
  */
-const getHandbookCommandsSearch = () => useHandbookCommandsSearch;
+const getResourceCommandsSearch = () => useResourceCommandsSearch;
 
 /***/ },
 
-/***/ "./src/hooks/useHandbookKeyboardShortcuts.js"
+/***/ "./src/hooks/useResourceKeyboardShortcuts.js"
 /*!***************************************************!*\
-  !*** ./src/hooks/useHandbookKeyboardShortcuts.js ***!
+  !*** ./src/hooks/useResourceKeyboardShortcuts.js ***!
   \***************************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   useHandbookKeyboardShortcuts: () => (/* binding */ useHandbookKeyboardShortcuts)
+/* harmony export */   useResourceKeyboardShortcuts: () => (/* binding */ useResourceKeyboardShortcuts)
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
@@ -1857,16 +1797,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_notices__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _constants_handbooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../constants/handbooks */ "./src/constants/handbooks.js");
+/* harmony import */ var _constants_resources__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../constants/resources */ "./src/constants/resources.js");
 /* harmony import */ var _utils_commandPaletteHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/commandPaletteHelper */ "./src/utils/commandPaletteHelper.js");
 /**
- * Custom hook for managing handbook keyboard shortcuts.
+ * Custom hook for managing resource keyboard shortcuts.
  *
  * Implements a two-step shortcut system:
- * 1. Cmd+Option+H activates "handbook mode" (shows notice, 3-second timeout)
- * 2. Press B/T/P/R to open command palette with pre-filled handbook search
+ * 1. Cmd+Option+H activates "resource mode" (shows notice, 3-second timeout)
+ * 2. Press B/T/P/R/L/V to open command palette with pre-filled resource search
  *
- * @module useHandbookKeyboardShortcuts
+ * @module useResourceKeyboardShortcuts
  */
 
 
@@ -1885,11 +1825,11 @@ __webpack_require__.r(__webpack_exports__);
 const HANDBOOK_MODE_TIMEOUT = 3000;
 
 /**
- * Hook that manages two-step keyboard shortcuts for handbook search.
+ * Hook that manages two-step keyboard shortcuts for resource search.
  *
  * @returns {void}
  */
-const useHandbookKeyboardShortcuts = () => {
+const useResourceKeyboardShortcuts = () => {
   const {
     open
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)(_wordpress_commands__WEBPACK_IMPORTED_MODULE_3__.store);
@@ -1957,7 +1897,7 @@ const useHandbookKeyboardShortcuts = () => {
       }
 
       // Find matching handbook by key press
-      const handbook = _constants_handbooks__WEBPACK_IMPORTED_MODULE_6__.ALL_RESOURCES.find(h => h.key === event.key.toLowerCase());
+      const handbook = _constants_resources__WEBPACK_IMPORTED_MODULE_6__.ALL_RESOURCES.find(h => h.key === event.key.toLowerCase());
       if (!handbook) {
         return;
       }
@@ -1995,6 +1935,66 @@ const useHandbookKeyboardShortcuts = () => {
     };
   }, []);
 };
+
+/***/ },
+
+/***/ "./src/searchResourcesCommands.js"
+/*!****************************************!*\
+  !*** ./src/searchResourcesCommands.js ***!
+  \****************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/commands */ "@wordpress/commands");
+/* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _hooks_useResourceCommandsSearch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hooks/useResourceCommandsSearch */ "./src/hooks/useResourceCommandsSearch.js");
+/* harmony import */ var _hooks_useResourceKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/useResourceKeyboardShortcuts */ "./src/hooks/useResourceKeyboardShortcuts.js");
+/* harmony import */ var _hooks_useResourceCommands__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hooks/useResourceCommands */ "./src/hooks/useResourceCommands.js");
+/**
+ * Main component for Search Handbooks Commands plugin.
+ *
+ * This component orchestrates handbook search functionality through:
+ * - Dynamic command generation based on search input
+ * - Keyboard shortcuts (Cmd+Option+H followed by B/T/P/R)
+ * - Static commands visible in the command palette
+ *
+ * The component itself renders nothing (returns null) but registers
+ * all necessary commands, shortcuts, and event handlers.
+ *
+ * @module searchResourcesCommands
+ */
+
+
+
+
+
+/**
+ * Main plugin component.
+ *
+ * Coordinates all handbook search features by:
+ * 1. Registering dynamic search command loader
+ * 2. Setting up keyboard shortcuts
+ * 3. Registering static handbook commands
+ *
+ * Component only registers hooks and doesn't render anything.
+ */
+const SearchHandbooksCommands = () => {
+  // Register dynamic search commands that appear based on user input
+  (0,_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__.useCommandLoader)({
+    name: "search-handbooks-commands/handbooks-search-shortcuts",
+    hook: (0,_hooks_useResourceCommandsSearch__WEBPACK_IMPORTED_MODULE_1__.getResourceCommandsSearch)()
+  });
+
+  // Set up two-step keyboard shortcuts (Cmd+Option+H + B/T/P/R)
+  (0,_hooks_useResourceKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_2__.useResourceKeyboardShortcuts)();
+
+  // Register static commands for each handbook
+  (0,_hooks_useResourceCommands__WEBPACK_IMPORTED_MODULE_3__.useResourceCommands)();
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchHandbooksCommands);
 
 /***/ },
 
@@ -2251,7 +2251,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
 /* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _SearchHandbooksCommands__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SearchHandbooksCommands */ "./src/SearchHandbooksCommands.js");
+/* harmony import */ var _searchResourcesCommands__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./searchResourcesCommands */ "./src/searchResourcesCommands.js");
 /**
  * WordPress dependencies
  */
@@ -2260,7 +2260,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // Register the plugin with search handbook commands
 (0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)("search-handbooks-commands", {
-  render: _SearchHandbooksCommands__WEBPACK_IMPORTED_MODULE_1__["default"]
+  render: _searchResourcesCommands__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 })();
 

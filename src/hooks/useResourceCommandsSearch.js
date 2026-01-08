@@ -1,16 +1,16 @@
 /**
- * Custom hook for dynamic handbook search commands.
+ * Custom hook for dynamic resource search commands.
  *
  * This hook processes search terms to:
- * 1. Detect handbook shortcuts (e.g., "query !b" for Block Editor)
+ * 1. Detect resource shortcuts (e.g., "query !b" for Block Editor)
  * 2. Generate executable search commands when shortcuts are matched
  *
- * @module useHandbookCommandsSearch
+ * @module useResourceCommandsSearch
  */
 import { useMemo } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import { search } from "@wordpress/icons";
-import { ALL_RESOURCES } from "../constants/handbooks";
+import { ALL_RESOURCES } from "../constants/resources";
 
 /**
  * Creates commands based on search term patterns.
@@ -19,7 +19,7 @@ import { ALL_RESOURCES } from "../constants/handbooks";
  * @param {string} params.search - Current search term from command palette
  * @returns {Object} Object containing commands array and loading state
  */
-export const useHandbookCommandsSearch = ({ search: searchTerm }) => {
+export const useResourceCommandsSearch = ({ search: searchTerm }) => {
 	const commands = useMemo(() => {
 		// Require minimum 3 characters to trigger any suggestions
 		if (!searchTerm || searchTerm.length < 3) {
@@ -68,6 +68,6 @@ export const useHandbookCommandsSearch = ({ search: searchTerm }) => {
 /**
  * Factory function to create the hook for useCommandLoader.
  *
- * @returns {Function} The useHandbookCommandsSearch hook
+ * @returns {Function} The useResourceCommandsSearch hook
  */
-export const getHandbookCommandsSearch = () => useHandbookCommandsSearch;
+export const getResourceCommandsSearch = () => useResourceCommandsSearch;

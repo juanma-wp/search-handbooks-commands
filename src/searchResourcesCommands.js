@@ -9,12 +9,12 @@
  * The component itself renders nothing (returns null) but registers
  * all necessary commands, shortcuts, and event handlers.
  *
- * @module SearchHandbooksCommands
+ * @module searchResourcesCommands
  */
 import { useCommandLoader } from "@wordpress/commands";
-import { getHandbookCommandsSearch } from "./hooks/useHandbookCommandsSearch";
-import { useHandbookKeyboardShortcuts } from "./hooks/useHandbookKeyboardShortcuts";
-import { useHandbookCommands } from "./hooks/useHandbookCommands";
+import { getResourceCommandsSearch } from "./hooks/useResourceCommandsSearch";
+import { useResourceKeyboardShortcuts } from "./hooks/useResourceKeyboardShortcuts";
+import { useResourceCommands } from "./hooks/useResourceCommands";
 
 /**
  * Main plugin component.
@@ -30,14 +30,14 @@ const SearchHandbooksCommands = () => {
 	// Register dynamic search commands that appear based on user input
 	useCommandLoader({
 		name: "search-handbooks-commands/handbooks-search-shortcuts",
-		hook: getHandbookCommandsSearch(),
+		hook: getResourceCommandsSearch(),
 	});
 
 	// Set up two-step keyboard shortcuts (Cmd+Option+H + B/T/P/R)
-	useHandbookKeyboardShortcuts();
+	useResourceKeyboardShortcuts();
 
 	// Register static commands for each handbook
-	useHandbookCommands();
+	useResourceCommands();
 };
 
 export default SearchHandbooksCommands;

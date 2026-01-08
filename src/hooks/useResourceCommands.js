@@ -1,29 +1,29 @@
 /**
- * Custom hook for registering individual handbook search commands.
+ * Custom hook for registering individual resource search commands.
  *
- * Creates command palette entries for each handbook that:
+ * Creates command palette entries for each resource that:
  * - Appear in the command palette by default
  * - Guide users on how to use the shortcut syntax
  * - Open the command palette with usage instructions
  *
- * @module useHandbookCommands
+ * @module useResourceCommands
  */
 import { useCommands } from "@wordpress/commands";
 import { useDispatch } from "@wordpress/data";
 import { store as commandsStore } from "@wordpress/commands";
 import { store as noticesStore } from "@wordpress/notices";
 import { __ } from "@wordpress/i18n";
-import { ALL_RESOURCES } from "../constants/handbooks";
+import { ALL_RESOURCES } from "../constants/resources";
 
 /**
- * Registers static commands for each handbook.
+ * Registers static commands for each resource.
  *
  * These commands are always visible in the command palette and serve as
  * entry points for users who don't know about the shortcut syntax.
  *
  * @returns {void}
  */
-export const useHandbookCommands = () => {
+export const useResourceCommands = () => {
 	const { open } = useDispatch(commandsStore);
 	const { createInfoNotice } = useDispatch(noticesStore);
 
