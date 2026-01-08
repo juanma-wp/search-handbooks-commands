@@ -15,7 +15,6 @@ import { useCommandLoader } from "@wordpress/commands";
 import { getHandbookCommandsSearch } from "./hooks/useHandbookCommandsSearch";
 import { useHandbookKeyboardShortcuts } from "./hooks/useHandbookKeyboardShortcuts";
 import { useHandbookCommands } from "./hooks/useHandbookCommands";
-import Notices from "./components/Notices";
 
 /**
  * Main plugin component.
@@ -24,9 +23,8 @@ import Notices from "./components/Notices";
  * 1. Registering dynamic search command loader
  * 2. Setting up keyboard shortcuts
  * 3. Registering static handbook commands
- * 4. Rendering notices component for snackbar notifications
  *
- * @returns {JSX.Element} Notices component to render snackbar notifications
+ * Component only registers hooks and doesn't render anything.
  */
 const SearchHandbooksCommands = () => {
 	// Register dynamic search commands that appear based on user input
@@ -40,10 +38,6 @@ const SearchHandbooksCommands = () => {
 
 	// Register static commands for each handbook
 	useHandbookCommands();
-
-	// Render Notices component to display snackbar notifications
-	// This makes wp.data.dispatch('core/notices') work outside Block Editor
-	return <Notices />;
 };
 
 export default SearchHandbooksCommands;

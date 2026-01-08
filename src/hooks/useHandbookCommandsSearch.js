@@ -4,13 +4,12 @@
  * This hook processes search terms to:
  * 1. Detect handbook shortcuts (e.g., "query !b" for Block Editor)
  * 2. Generate executable search commands when shortcuts are matched
- * 3. Provide helpful hints when user types relevant handbook names
  *
  * @module useHandbookCommandsSearch
  */
 import { useMemo } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-import { search, tip } from "@wordpress/icons";
+import { search } from "@wordpress/icons";
 import { HANDBOOKS } from "../constants/handbooks";
 
 /**
@@ -33,56 +32,32 @@ export const useHandbookCommandsSearch = ({ search: searchTerm }) => {
 		);
 
 		// Generate executable search commands when a prefix is detected
-		if (matchedHandbooks.length > 0) {
-			return matchedHandbooks.flatMap((handbook) => {
-				// Extract the actual query by removing the prefix
-				const query = searchTerm.slice(0, -(handbook.prefix.length + 1)).trim();
+		return matchedHandbooks.flatMap((handbook) => {
+			// Extract the actual query by removing the prefix
+			const query = searchTerm.slice(0, -(handbook.prefix.length + 1)).trim();
 
-				// Skip empty queries
-				if (!query) {
-					return [];
-				}
+			// Skip empty queries
+			if (!query) {
+				return [];
+			}
 
-				return [
-					{
-						name: `search-handbooks-commands/handbook-search-${handbook.prefix}`,
-						label: __(
-							`Search ${handbook.name} Handbook: "${query}"`,
-							"search-handbooks-commands"
+			return [
+				{
+					name: `search-handbooks-commands/handbook-search-${handbook.prefix}`,
+					label: __(
+						`Search ${handbook.name} Handbook: "${query}"`,
+						"search-handbooks-commands"
+					),
+					icon: search,
+					searchLabel: `${query} ${handbook.prefix}`,
+					callback: () =>
+						window.open(
+							`${handbook.url}?s=${encodeURIComponent(query)}`,
+							"_blank"
 						),
-						icon: search,
-						searchLabel: `${query} ${handbook.prefix}`,
-						callback: () =>
-							window.open(
-								`${handbook.url}?s=${encodeURIComponent(query)}`,
-								"_blank"
-							),
-					},
-				];
-			});
-		}
-
-		// Find handbooks relevant to the search term
-		const relevantHandbooks = HANDBOOKS.filter((handbook) =>
-			handbook.name.toLowerCase().includes(searchTerm.toLowerCase())
-		);
-
-		// Only show hints if there are relevant handbooks
-		if (relevantHandbooks.length === 0) {
-			return [];
-		}
-
-		// Generate hint commands for relevant handbooks
-		return relevantHandbooks.map((handbook) => ({
-			name: `search-handbooks-commands/handbook-hint-${handbook.prefix}`,
-			label: __(
-				`Add "${handbook.prefix}" to search "${searchTerm}" on the ${handbook.name} Handbook`,
-				"search-handbooks-commands"
-			),
-			icon: tip,
-			searchLabel: searchTerm,
-			callback: () => {},
-		}));
+				},
+			];
+		});
 	}, [searchTerm]);
 
 	return { commands, isLoading: false };

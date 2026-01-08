@@ -50,7 +50,7 @@ export const useHandbookKeyboardShortcuts = () => {
 				character: 'h',
 			},
 		});
-	}, [registerShortcut]);
+	}, []);
 
 	/**
 	 * Handle Cmd+Option+H activation.
@@ -136,5 +136,5 @@ export const useHandbookKeyboardShortcuts = () => {
 				clearTimeout(handbookModeTimeout.current);
 			}
 		};
-	}, [open, createInfoNotice]);
+	}, []);
 };

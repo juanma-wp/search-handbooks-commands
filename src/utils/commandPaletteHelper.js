@@ -16,6 +16,27 @@
 const COMMAND_PALETTE_INPUT_SELECTOR = '.commands-command-menu__container input[type="text"]';
 
 /**
+ * Sets the value of a React-controlled input element.
+ *
+ * This bypasses React's controlled component mechanism by using the native
+ * HTMLInputElement setter, then dispatches an input event to notify React
+ * of the change.
+ *
+ * @param {HTMLInputElement} inputElement - The input element to modify
+ * @param {string} value - The value to set
+ */
+const setReactInputValue = (inputElement, value) => {
+	const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+		window.HTMLInputElement.prototype,
+		'value'
+	).set;
+	nativeInputValueSetter.call(inputElement, value);
+
+	const inputEvent = new Event('input', { bubbles: true });
+	inputElement.dispatchEvent(inputEvent);
+};
+
+/**
  * Pre-fills the command palette with a search term and handbook prefix.
  *
  * This function:
@@ -39,16 +60,8 @@ export const prefillCommandPalette = (handbookPrefix, delay = 100) => {
 		// Pre-fill with "search" + handbook prefix
 		const searchText = `search ${handbookPrefix}`;
 
-		// Use native setter to bypass React's controlled input
-		const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-			window.HTMLInputElement.prototype,
-			'value'
-		).set;
-		nativeInputValueSetter.call(commandInput, searchText);
-
-		// Trigger React's onChange event
-		const inputEvent = new Event('input', { bubbles: true });
-		commandInput.dispatchEvent(inputEvent);
+		// Set value using helper that bypasses React's controlled input
+		setReactInputValue(commandInput, searchText);
 
 		// Focus and select "search" text so user can start typing immediately
 		commandInput.focus();

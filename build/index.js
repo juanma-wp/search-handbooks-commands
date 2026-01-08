@@ -121,29 +121,6 @@ var search_default = /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
 
 /***/ },
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/tip.js"
-/*!*******************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/library/tip.js ***!
-  \*******************************************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ tip_default)
-/* harmony export */ });
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-// packages/icons/src/library/tip.tsx
-
-
-var tip_default = /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.SVG, { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_0__.Path, { d: "M12 15.8c-3.7 0-6.8-3-6.8-6.8s3-6.8 6.8-6.8c3.7 0 6.8 3 6.8 6.8s-3.1 6.8-6.8 6.8zm0-12C9.1 3.8 6.8 6.1 6.8 9s2.4 5.2 5.2 5.2c2.9 0 5.2-2.4 5.2-5.2S14.9 3.8 12 3.8zM8 17.5h8V19H8zM10 20.5h4V22h-4z" }) });
-
-//# sourceMappingURL=tip.js.map
-
-
-/***/ },
-
 /***/ "./node_modules/react/cjs/react-jsx-runtime.development.js"
 /*!*****************************************************************!*\
   !*** ./node_modules/react/cjs/react-jsx-runtime.development.js ***!
@@ -1513,15 +1490,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/commands */ "@wordpress/commands");
-/* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_commands__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _hooks_useHandbookCommandsSearch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/useHandbookCommandsSearch */ "./src/hooks/useHandbookCommandsSearch.js");
-/* harmony import */ var _hooks_useHandbookKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hooks/useHandbookKeyboardShortcuts */ "./src/hooks/useHandbookKeyboardShortcuts.js");
-/* harmony import */ var _hooks_useHandbookCommands__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hooks/useHandbookCommands */ "./src/hooks/useHandbookCommands.js");
-/* harmony import */ var _components_Notices__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Notices */ "./src/components/Notices.js");
-
+/* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/commands */ "@wordpress/commands");
+/* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _hooks_useHandbookCommandsSearch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hooks/useHandbookCommandsSearch */ "./src/hooks/useHandbookCommandsSearch.js");
+/* harmony import */ var _hooks_useHandbookKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/useHandbookKeyboardShortcuts */ "./src/hooks/useHandbookKeyboardShortcuts.js");
+/* harmony import */ var _hooks_useHandbookCommands__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hooks/useHandbookCommands */ "./src/hooks/useHandbookCommands.js");
 /**
  * Main component for Search Handbooks Commands plugin.
  *
@@ -1540,7 +1513,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 /**
  * Main plugin component.
  *
@@ -1548,77 +1520,23 @@ __webpack_require__.r(__webpack_exports__);
  * 1. Registering dynamic search command loader
  * 2. Setting up keyboard shortcuts
  * 3. Registering static handbook commands
- * 4. Rendering notices component for snackbar notifications
  *
- * @returns {JSX.Element} Notices component to render snackbar notifications
+ * Component only registers hooks and doesn't render anything.
  */
 const SearchHandbooksCommands = () => {
   // Register dynamic search commands that appear based on user input
-  (0,_wordpress_commands__WEBPACK_IMPORTED_MODULE_1__.useCommandLoader)({
+  (0,_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__.useCommandLoader)({
     name: "search-handbooks-commands/handbooks-search-shortcuts",
-    hook: (0,_hooks_useHandbookCommandsSearch__WEBPACK_IMPORTED_MODULE_2__.getHandbookCommandsSearch)()
+    hook: (0,_hooks_useHandbookCommandsSearch__WEBPACK_IMPORTED_MODULE_1__.getHandbookCommandsSearch)()
   });
 
   // Set up two-step keyboard shortcuts (Cmd+Option+H + B/T/P/R)
-  (0,_hooks_useHandbookKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_3__.useHandbookKeyboardShortcuts)();
+  (0,_hooks_useHandbookKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_2__.useHandbookKeyboardShortcuts)();
 
   // Register static commands for each handbook
-  (0,_hooks_useHandbookCommands__WEBPACK_IMPORTED_MODULE_4__.useHandbookCommands)();
-
-  // Render Notices component to display snackbar notifications
-  // This makes wp.data.dispatch('core/notices') work outside Block Editor
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Notices__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+  (0,_hooks_useHandbookCommands__WEBPACK_IMPORTED_MODULE_3__.useHandbookCommands)();
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchHandbooksCommands);
-
-/***/ },
-
-/***/ "./src/components/Notices.js"
-/*!***********************************!*\
-  !*** ./src/components/Notices.js ***!
-  \***********************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/notices */ "@wordpress/notices");
-/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_notices__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-
-/**
- * Notices component to render snackbar notifications from core/notices store.
- *
- * This makes wp.data.dispatch('core/notices') work outside the Block Editor
- * by providing a rendering component for the notices.
- */
-
-
-
-
-/**
- * Renders notices from the core/notices store.
- *
- * @returns {JSX.Element} The notices component
- */
-const Notices = () => {
-  const notices = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => select(_wordpress_notices__WEBPACK_IMPORTED_MODULE_2__.store).getNotices().filter(notice => notice.type === 'snackbar'), []);
-  const {
-    removeNotice
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_2__.store);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SnackbarList, {
-    notices: notices,
-    className: "handbook-commands-snackbar-list",
-    onRemove: removeNotice
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Notices);
 
 /***/ },
 
@@ -1726,57 +1644,19 @@ const useHandbookCommands = () => {
   const {
     createInfoNotice
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_2__.store);
-
-  // Register each handbook command individually
-  // Cannot use forEach with hooks - must call at top level
-  (0,_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__.useCommand)({
-    name: `search-handbooks-commands/search-${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[0].prefix}`,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Search ${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[0].name} Handbook`, "search-handbooks-commands"),
-    icon: _constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[0].icon,
+  const commands = _constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS.map(handbook => ({
+    name: `search-handbooks-commands/search-${handbook.prefix}`,
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Search ${handbook.name} Handbook`, "search-handbooks-commands"),
+    icon: handbook.icon,
     callback: () => {
       open();
-      createInfoNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Type your search term and add "${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[0].prefix}" to search`, 'search-handbooks-commands'), {
+      createInfoNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Type your search term and add "${handbook.prefix}" to search`, 'search-handbooks-commands'), {
         type: 'snackbar',
         isDismissible: true
       });
     }
-  });
-  (0,_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__.useCommand)({
-    name: `search-handbooks-commands/search-${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[1].prefix}`,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Search ${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[1].name} Handbook`, "search-handbooks-commands"),
-    icon: _constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[1].icon,
-    callback: () => {
-      open();
-      createInfoNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Type your search term and add "${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[1].prefix}" to search`, 'search-handbooks-commands'), {
-        type: 'snackbar',
-        isDismissible: true
-      });
-    }
-  });
-  (0,_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__.useCommand)({
-    name: `search-handbooks-commands/search-${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[2].prefix}`,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Search ${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[2].name} Handbook`, "search-handbooks-commands"),
-    icon: _constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[2].icon,
-    callback: () => {
-      open();
-      createInfoNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Type your search term and add "${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[2].prefix}" to search`, 'search-handbooks-commands'), {
-        type: 'snackbar',
-        isDismissible: true
-      });
-    }
-  });
-  (0,_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__.useCommand)({
-    name: `search-handbooks-commands/search-${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[3].prefix}`,
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Search ${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[3].name} Handbook`, "search-handbooks-commands"),
-    icon: _constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[3].icon,
-    callback: () => {
-      open();
-      createInfoNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)(`Type your search term and add "${_constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS[3].prefix}" to search`, 'search-handbooks-commands'), {
-        type: 'snackbar',
-        isDismissible: true
-      });
-    }
-  });
+  }));
+  (0,_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__.useCommands)(commands);
 };
 
 /***/ },
@@ -1797,15 +1677,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/search.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/tip.js");
-/* harmony import */ var _constants_handbooks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants/handbooks */ "./src/constants/handbooks.js");
+/* harmony import */ var _constants_handbooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants/handbooks */ "./src/constants/handbooks.js");
 /**
  * Custom hook for dynamic handbook search commands.
  *
  * This hook processes search terms to:
  * 1. Detect handbook shortcuts (e.g., "query !b" for Block Editor)
  * 2. Generate executable search commands when shortcuts are matched
- * 3. Provide helpful hints when user types relevant handbook names
  *
  * @module useHandbookCommandsSearch
  */
@@ -1831,44 +1709,25 @@ const useHandbookCommandsSearch = ({
     }
 
     // Check if search term ends with a handbook prefix
-    const matchedHandbooks = _constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS.filter(handbook => searchTerm.endsWith(` ${handbook.prefix}`));
+    const matchedHandbooks = _constants_handbooks__WEBPACK_IMPORTED_MODULE_3__.HANDBOOKS.filter(handbook => searchTerm.endsWith(` ${handbook.prefix}`));
 
     // Generate executable search commands when a prefix is detected
-    if (matchedHandbooks.length > 0) {
-      return matchedHandbooks.flatMap(handbook => {
-        // Extract the actual query by removing the prefix
-        const query = searchTerm.slice(0, -(handbook.prefix.length + 1)).trim();
+    return matchedHandbooks.flatMap(handbook => {
+      // Extract the actual query by removing the prefix
+      const query = searchTerm.slice(0, -(handbook.prefix.length + 1)).trim();
 
-        // Skip empty queries
-        if (!query) {
-          return [];
-        }
-        return [{
-          name: `search-handbooks-commands/handbook-search-${handbook.prefix}`,
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(`Search ${handbook.name} Handbook: "${query}"`, "search-handbooks-commands"),
-          icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_2__["default"],
-          searchLabel: `${query} ${handbook.prefix}`,
-          callback: () => window.open(`${handbook.url}?s=${encodeURIComponent(query)}`, "_blank")
-        }];
-      });
-    }
-
-    // Find handbooks relevant to the search term
-    const relevantHandbooks = _constants_handbooks__WEBPACK_IMPORTED_MODULE_4__.HANDBOOKS.filter(handbook => handbook.name.toLowerCase().includes(searchTerm.toLowerCase()));
-
-    // Only show hints if there are relevant handbooks
-    if (relevantHandbooks.length === 0) {
-      return [];
-    }
-
-    // Generate hint commands for relevant handbooks
-    return relevantHandbooks.map(handbook => ({
-      name: `search-handbooks-commands/handbook-hint-${handbook.prefix}`,
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(`Add "${handbook.prefix}" to search "${searchTerm}" on the ${handbook.name} Handbook`, "search-handbooks-commands"),
-      icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_3__["default"],
-      searchLabel: searchTerm,
-      callback: () => {}
-    }));
+      // Skip empty queries
+      if (!query) {
+        return [];
+      }
+      return [{
+        name: `search-handbooks-commands/handbook-search-${handbook.prefix}`,
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(`Search ${handbook.name} Handbook: "${query}"`, "search-handbooks-commands"),
+        icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_2__["default"],
+        searchLabel: `${query} ${handbook.prefix}`,
+        callback: () => window.open(`${handbook.url}?s=${encodeURIComponent(query)}`, "_blank")
+      }];
+    });
   }, [searchTerm]);
   return {
     commands,
@@ -1966,7 +1825,7 @@ const useHandbookKeyboardShortcuts = () => {
         character: 'h'
       }
     });
-  }, [registerShortcut]);
+  }, []);
 
   /**
    * Handle Cmd+Option+H activation.
@@ -2041,7 +1900,7 @@ const useHandbookKeyboardShortcuts = () => {
         clearTimeout(handbookModeTimeout.current);
       }
     };
-  }, [open, createInfoNotice]);
+  }, []);
 };
 
 /***/ },
@@ -2074,6 +1933,25 @@ __webpack_require__.r(__webpack_exports__);
 const COMMAND_PALETTE_INPUT_SELECTOR = '.commands-command-menu__container input[type="text"]';
 
 /**
+ * Sets the value of a React-controlled input element.
+ *
+ * This bypasses React's controlled component mechanism by using the native
+ * HTMLInputElement setter, then dispatches an input event to notify React
+ * of the change.
+ *
+ * @param {HTMLInputElement} inputElement - The input element to modify
+ * @param {string} value - The value to set
+ */
+const setReactInputValue = (inputElement, value) => {
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+  nativeInputValueSetter.call(inputElement, value);
+  const inputEvent = new Event('input', {
+    bubbles: true
+  });
+  inputElement.dispatchEvent(inputEvent);
+};
+
+/**
  * Pre-fills the command palette with a search term and handbook prefix.
  *
  * This function:
@@ -2096,15 +1974,8 @@ const prefillCommandPalette = (handbookPrefix, delay = 100) => {
     // Pre-fill with "search" + handbook prefix
     const searchText = `search ${handbookPrefix}`;
 
-    // Use native setter to bypass React's controlled input
-    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-    nativeInputValueSetter.call(commandInput, searchText);
-
-    // Trigger React's onChange event
-    const inputEvent = new Event('input', {
-      bubbles: true
-    });
-    commandInput.dispatchEvent(inputEvent);
+    // Set value using helper that bypasses React's controlled input
+    setReactInputValue(commandInput, searchText);
 
     // Focus and select "search" text so user can start typing immediately
     commandInput.focus();
@@ -2121,16 +1992,6 @@ const prefillCommandPalette = (handbookPrefix, delay = 100) => {
 (module) {
 
 module.exports = window["wp"]["commands"];
-
-/***/ },
-
-/***/ "@wordpress/components"
-/*!************************************!*\
-  !*** external ["wp","components"] ***!
-  \************************************/
-(module) {
-
-module.exports = window["wp"]["components"];
 
 /***/ },
 
