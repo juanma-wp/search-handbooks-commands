@@ -1533,6 +1533,88 @@ if (false) // removed by dead control flow
 
 /***/ },
 
+/***/ "./src/components/Notices.js"
+/*!***********************************!*\
+  !*** ./src/components/Notices.js ***!
+  \***********************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/notices */ "@wordpress/notices");
+/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_notices__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
+
+/**
+ * Notices component to render snackbar notifications from core/notices store.
+ *
+ * This makes wp.data.dispatch('core/notices') work outside the Block Editor
+ * by providing a rendering component for the notices.
+ */
+
+
+
+
+
+/**
+ * Renders notices from the core/notices store.
+ *
+ * @returns {JSX.Element|null} The notices component or null if in block editor
+ */
+const Notices = ({
+  className
+}) => {
+  const {
+    notices,
+    isBlockEditor
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useSelect)(select => {
+    // Check if we're in the block editor (post editor or site editor)
+    const getCurrentPostType = select(_wordpress_editor__WEBPACK_IMPORTED_MODULE_3__.store)?.getCurrentPostType;
+    const isInBlockEditor = typeof getCurrentPostType === "function" && getCurrentPostType() !== null;
+    return {
+      notices: select(_wordpress_notices__WEBPACK_IMPORTED_MODULE_2__.store).getNotices().filter(notice => notice.type === "snackbar"),
+      isBlockEditor: isInBlockEditor
+    };
+  }, []);
+  const {
+    removeNotice
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_2__.store);
+
+  // Don't render if we're in the block editor
+  if (isBlockEditor) {
+    return null;
+  }
+
+  // Always render the container, even when empty
+  // This ensures proper styles are loaded from the beginning
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `components-editor-notices__snackbar ${className}`,
+    style: {
+      position: "fixed",
+      left: 0,
+      bottom: "16px",
+      paddingLeft: "16px",
+      paddingRight: "16px",
+      zIndex: 1000000
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SnackbarList, {
+    notices: notices,
+    onRemove: removeNotice
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Notices);
+
+/***/ },
+
 /***/ "./src/constants/resources.js"
 /*!************************************!*\
   !*** ./src/constants/resources.js ***!
@@ -1778,169 +1860,6 @@ const getResourceCommandsSearch = () => useResourceCommandsSearch;
 
 /***/ },
 
-/***/ "./src/hooks/useResourceKeyboardShortcuts.js"
-/*!***************************************************!*\
-  !*** ./src/hooks/useResourceKeyboardShortcuts.js ***!
-  \***************************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   useResourceKeyboardShortcuts: () => (/* binding */ useResourceKeyboardShortcuts)
-/* harmony export */ });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_keyboard_shortcuts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/keyboard-shortcuts */ "@wordpress/keyboard-shortcuts");
-/* harmony import */ var _wordpress_keyboard_shortcuts__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_keyboard_shortcuts__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/commands */ "@wordpress/commands");
-/* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_commands__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/notices */ "@wordpress/notices");
-/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_notices__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _constants_resources__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../constants/resources */ "./src/constants/resources.js");
-/* harmony import */ var _utils_commandPaletteHelper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/commandPaletteHelper */ "./src/utils/commandPaletteHelper.js");
-/**
- * Custom hook for managing resource keyboard shortcuts.
- *
- * Implements a two-step shortcut system:
- * 1. Cmd+Option+H activates "resource mode" (shows notice, 3-second timeout)
- * 2. Press B/T/P/R/L/V to open command palette with pre-filled resource search
- *
- * @module useResourceKeyboardShortcuts
- */
-
-
-
-
-
-
-
-
-
-
-/**
- * Timeout duration (in milliseconds) for resource mode auto-deactivation.
- * @constant {number}
- */
-const RESOURCE_MODE_TIMEOUT = 3000;
-
-/**
- * Hook that manages two-step keyboard shortcuts for resource search.
- *
- * @returns {void}
- */
-const useResourceKeyboardShortcuts = () => {
-  const {
-    open
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)(_wordpress_commands__WEBPACK_IMPORTED_MODULE_3__.store);
-  const {
-    createInfoNotice
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_4__.store);
-  const {
-    registerShortcut
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)(_wordpress_keyboard_shortcuts__WEBPACK_IMPORTED_MODULE_1__.store);
-  const resourceModeActive = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
-  const resourceModeTimeout = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-
-  /**
-   * Register the primary shortcut: Cmd+Option+H
-   * This activates resource mode and waits for secondary key press.
-   */
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    registerShortcut({
-      name: 'search-resources-commands/resource-mode',
-      category: 'global',
-      description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Activate resource search mode', 'search-resources-commands'),
-      keyCombination: {
-        modifier: 'primaryAlt',
-        character: 'h'
-      }
-    });
-  }, []);
-
-  /**
-   * Handle Cmd+Option+H activation.
-   * Shows visual feedback and activates resource mode with auto-timeout.
-   */
-  (0,_wordpress_keyboard_shortcuts__WEBPACK_IMPORTED_MODULE_1__.useShortcut)('search-resources-commands/resource-mode', event => {
-    event.preventDefault();
-    resourceModeActive.current = true;
-
-    // Provide visual feedback to user
-    createInfoNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Resource mode active. Press B (Block Editor), T (Theme), P (Plugin), R (REST API), L (Learn), or V (WordPress TV)', 'search-resources-commands'), {
-      type: 'snackbar',
-      isDismissible: true
-    });
-
-    // Clear any existing timeout
-    if (resourceModeTimeout.current) {
-      clearTimeout(resourceModeTimeout.current);
-    }
-
-    // Auto-deactivate after timeout period
-    resourceModeTimeout.current = setTimeout(() => {
-      resourceModeActive.current = false;
-    }, RESOURCE_MODE_TIMEOUT);
-  }, {
-    bindGlobal: true
-  });
-
-  /**
-   * Listen for secondary key press (B/T/P/R/L/V) when resource mode is active.
-   * Opens command palette with pre-filled resource prefix.
-   */
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    const handleKeyDown = event => {
-      // Only process if resource mode is active
-      if (!resourceModeActive.current) {
-        return;
-      }
-
-      // Find matching resource by key press
-      const resource = _constants_resources__WEBPACK_IMPORTED_MODULE_6__.ALL_RESOURCES.find(h => h.key === event.key.toLowerCase());
-      if (!resource) {
-        return;
-      }
-      event.preventDefault();
-      event.stopPropagation();
-
-      // Deactivate resource mode
-      resourceModeActive.current = false;
-      if (resourceModeTimeout.current) {
-        clearTimeout(resourceModeTimeout.current);
-      }
-
-      // Open command palette
-      open();
-
-      // Pre-fill with resource prefix
-      (0,_utils_commandPaletteHelper__WEBPACK_IMPORTED_MODULE_7__.prefillCommandPalette)(resource.prefix);
-
-      // Show usage hint
-      const resourceType = resource.type === 'handbook' ? 'Handbook' : '';
-      const message = resourceType ? `Type your search and press Enter to search ${resource.name} ${resourceType}` : `Type your search and press Enter to search ${resource.name}`;
-      createInfoNotice((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)(message, 'search-resources-commands'), {
-        type: 'snackbar',
-        isDismissible: true
-      });
-    };
-
-    // Use capture phase to intercept before other handlers
-    document.addEventListener('keydown', handleKeyDown, true);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown, true);
-      if (resourceModeTimeout.current) {
-        clearTimeout(resourceModeTimeout.current);
-      }
-    };
-  }, []);
-};
-
-/***/ },
-
 /***/ "./src/searchResourcesCommands.js"
 /*!****************************************!*\
   !*** ./src/searchResourcesCommands.js ***!
@@ -1954,8 +1873,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/commands */ "@wordpress/commands");
 /* harmony import */ var _wordpress_commands__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_commands__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _hooks_useResourceCommandsSearch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hooks/useResourceCommandsSearch */ "./src/hooks/useResourceCommandsSearch.js");
-/* harmony import */ var _hooks_useResourceKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/useResourceKeyboardShortcuts */ "./src/hooks/useResourceKeyboardShortcuts.js");
-/* harmony import */ var _hooks_useResourceCommands__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hooks/useResourceCommands */ "./src/hooks/useResourceCommands.js");
+/* harmony import */ var _hooks_useResourceCommands__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/useResourceCommands */ "./src/hooks/useResourceCommands.js");
 /**
  * Main component for Search Resources Commands plugin.
  *
@@ -1973,7 +1891,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 /**
  * Main plugin component.
  *
@@ -1981,8 +1898,9 @@ __webpack_require__.r(__webpack_exports__);
  * 1. Registering dynamic search command loader
  * 2. Setting up keyboard shortcuts
  * 3. Registering static resource commands
+ * 4. Rendering notices component for snackbar notifications
  *
- * Component only registers hooks and doesn't render anything.
+ * @returns {JSX.Element} Notices component to render snackbar notifications
  */
 const SearchResourcesCommands = () => {
   // Register dynamic search commands that appear based on user input
@@ -1991,13 +1909,22 @@ const SearchResourcesCommands = () => {
     hook: (0,_hooks_useResourceCommandsSearch__WEBPACK_IMPORTED_MODULE_1__.getResourceCommandsSearch)()
   });
 
-  // Set up two-step keyboard shortcuts (Cmd+Option+H + B/T/P/R/L/V)
-  (0,_hooks_useResourceKeyboardShortcuts__WEBPACK_IMPORTED_MODULE_2__.useResourceKeyboardShortcuts)();
-
   // Register static commands for each resource
-  (0,_hooks_useResourceCommands__WEBPACK_IMPORTED_MODULE_3__.useResourceCommands)();
+  (0,_hooks_useResourceCommands__WEBPACK_IMPORTED_MODULE_2__.useResourceCommands)();
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchResourcesCommands);
+
+/***/ },
+
+/***/ "./src/styles.css"
+/*!************************!*\
+  !*** ./src/styles.css ***!
+  \************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ },
 
@@ -2091,6 +2018,16 @@ module.exports = window["wp"]["commands"];
 
 /***/ },
 
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
 /***/ "@wordpress/data"
 /*!******************************!*\
   !*** external ["wp","data"] ***!
@@ -2098,6 +2035,26 @@ module.exports = window["wp"]["commands"];
 (module) {
 
 module.exports = window["wp"]["data"];
+
+/***/ },
+
+/***/ "@wordpress/dom-ready"
+/*!**********************************!*\
+  !*** external ["wp","domReady"] ***!
+  \**********************************/
+(module) {
+
+module.exports = window["wp"]["domReady"];
+
+/***/ },
+
+/***/ "@wordpress/editor"
+/*!********************************!*\
+  !*** external ["wp","editor"] ***!
+  \********************************/
+(module) {
+
+module.exports = window["wp"]["editor"];
 
 /***/ },
 
@@ -2121,16 +2078,6 @@ module.exports = window["wp"]["i18n"];
 
 /***/ },
 
-/***/ "@wordpress/keyboard-shortcuts"
-/*!*******************************************!*\
-  !*** external ["wp","keyboardShortcuts"] ***!
-  \*******************************************/
-(module) {
-
-module.exports = window["wp"]["keyboardShortcuts"];
-
-/***/ },
-
 /***/ "@wordpress/notices"
 /*!*********************************!*\
   !*** external ["wp","notices"] ***!
@@ -2138,16 +2085,6 @@ module.exports = window["wp"]["keyboardShortcuts"];
 (module) {
 
 module.exports = window["wp"]["notices"];
-
-/***/ },
-
-/***/ "@wordpress/plugins"
-/*!*********************************!*\
-  !*** external ["wp","plugins"] ***!
-  \*********************************/
-(module) {
-
-module.exports = window["wp"]["plugins"];
 
 /***/ },
 
@@ -2252,18 +2189,32 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/plugins */ "@wordpress/plugins");
-/* harmony import */ var _wordpress_plugins__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_plugins__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _searchResourcesCommands__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./searchResourcesCommands */ "./src/searchResourcesCommands.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _searchResourcesCommands__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./searchResourcesCommands */ "./src/searchResourcesCommands.js");
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/dom-ready */ "@wordpress/dom-ready");
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_Notices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Notices */ "./src/components/Notices.js");
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styles.css */ "./src/styles.css");
+
 /**
  * WordPress dependencies
  */
 
 
 
-// Register the plugin with search resources commands
-(0,_wordpress_plugins__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)("search-resources-commands", {
-  render: _searchResourcesCommands__WEBPACK_IMPORTED_MODULE_1__["default"]
+
+
+const ID = "search-resources-commands";
+_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_3___default()(() => {
+  const container = document.createElement("div");
+  container.id = `${ID}-root`;
+  document.body.appendChild(container);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createRoot)(container).render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_searchResourcesCommands__WEBPACK_IMPORTED_MODULE_2__["default"], null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_Notices__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: `${ID}-notices`
+  })));
 });
 })();
 

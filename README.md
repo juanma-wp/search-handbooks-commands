@@ -2,22 +2,12 @@
 
 [![](https://img.shields.io/badge/playground-live%20preview-blue?logo=wordpress)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/juanma-wp/search-resources-commands/refs/heads/main/_playground/blueprint.json)
 
-WordPress plugin for searching WordPress resources (handbooks, Learn WordPress, WordPress TV) via keyboard shortcuts and command palette (see [video](https://youtu.be/je_wUMS5aEc) or [live demo](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/juanma-wp/search-resources-commands/refs/heads/main/_playground/blueprint.json)).
+WordPress plugin for searching WordPress resources (handbooks, Learn WordPress, WordPress TV) via keyboard shortcuts and command palette (see [video](https://www.youtube.com/watch?v=a201wWyhObc) or [live demo](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/juanma-wp/search-resources-commands/refs/heads/main/_playground/blueprint.json)).
 
-[![](./assets/snapshot.png)](https://youtu.be/je_wUMS5aEc)
-
-[![](./assets/snapshot-wp-tv.png)](https://www.youtube.com/watch?v=IrMemyzOaz4)
+[![](./assets/snapshot.png)](https://www.youtube.com/watch?v=a201wWyhObc)
 
 
 ## Features
-
-- **Keyboard Shortcuts**: Press `Cmd+Option+H` (Mac) or `Ctrl+Alt+H` (Windows) to activate resource mode, then press:
-  - `B` - Search Block Editor Handbook
-  - `T` - Search Theme Handbook
-  - `P` - Search Plugin Handbook
-  - `R` - Search REST API Handbook
-  - `L` - Search Learn WordPress
-  - `V` - Search WordPress TV
 
 - **Command Palette Integration**: Type search terms followed by prefixes:
   - `!b` - Block Editor
@@ -41,16 +31,17 @@ WordPress plugin for searching WordPress resources (handbooks, Learn WordPress, 
 
 ## Usage
 
-### Method 1: Keyboard Shortcuts
-1. Press `Cmd+Option+H` (activates resource mode)
-2. Press `B` (for Block Editor handbook)
-3. Type your search term in the command palette
-4. Press Enter to search
-
-### Method 2: Command Palette
+### Method 1: Direct Search with Prefixes
 1. Press `Cmd+K` to open command palette
 2. Type your search term followed by a prefix (e.g., "blocks !b" for Block Editor, "gutenberg !l" for Learn WordPress)
 3. Press Enter to search the selected resource
+
+### Method 2: Using Search Commands (No Need to Remember Prefixes)
+1. Press `Cmd+K` to open command palette
+2. Type "handbook" or "search" to see available search commands for each resource (Block Editor, Theme, Plugin, REST API, Learn WordPress, WordPress TV)
+3. Select the resource you want to search
+4. The command palette will be pre-filled with your search term and the correct prefix automatically
+5. Press Enter to search
 
 ## Requirements
 

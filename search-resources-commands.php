@@ -16,9 +16,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Enqueue the plugin's scripts
+ * Enqueue the plugin's scripts and styles
  */
 function search_resources_commands_enqueue_scripts() {
+
+	// Enqueue WordPress components styles for Snackbar notifications.
+	wp_enqueue_style( 'wp-components' );
+
 	$asset_file = include plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
 
 	wp_enqueue_script(
@@ -28,5 +32,12 @@ function search_resources_commands_enqueue_scripts() {
 		$asset_file['version'],
 		true
 	);
+
+	wp_enqueue_style(
+		'search-resources-commands',
+		plugin_dir_url( __FILE__ ) . 'build/index.css',
+		array(),
+		$asset_file['version']
+	);
 }
-add_action( 'enqueue_block_editor_assets', 'search_resources_commands_enqueue_scripts' );
+add_action( 'admin_enqueue_scripts', 'search_resources_commands_enqueue_scripts' );

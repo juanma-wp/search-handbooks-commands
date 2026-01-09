@@ -13,7 +13,6 @@
  */
 import { useCommandLoader } from "@wordpress/commands";
 import { getResourceCommandsSearch } from "./hooks/useResourceCommandsSearch";
-import { useResourceKeyboardShortcuts } from "./hooks/useResourceKeyboardShortcuts";
 import { useResourceCommands } from "./hooks/useResourceCommands";
 
 /**
@@ -23,8 +22,9 @@ import { useResourceCommands } from "./hooks/useResourceCommands";
  * 1. Registering dynamic search command loader
  * 2. Setting up keyboard shortcuts
  * 3. Registering static resource commands
+ * 4. Rendering notices component for snackbar notifications
  *
- * Component only registers hooks and doesn't render anything.
+ * @returns {JSX.Element} Notices component to render snackbar notifications
  */
 const SearchResourcesCommands = () => {
 	// Register dynamic search commands that appear based on user input
@@ -32,9 +32,6 @@ const SearchResourcesCommands = () => {
 		name: "search-resources-commands/resources-search-shortcuts",
 		hook: getResourceCommandsSearch(),
 	});
-
-	// Set up two-step keyboard shortcuts (Cmd+Option+H + B/T/P/R/L/V)
-	useResourceKeyboardShortcuts();
 
 	// Register static commands for each resource
 	useResourceCommands();
