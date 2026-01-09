@@ -12,8 +12,9 @@
  * @module searchResourcesCommands
  */
 import { useCommandLoader } from "@wordpress/commands";
-import { getResourceCommandsSearch } from "./hooks/useResourceCommandsSearch";
+import { useResourceCommandsSearch } from "./hooks/useResourceCommandsSearch";
 import { useResourceCommands } from "./hooks/useResourceCommands";
+import type { FC } from 'react';
 
 /**
  * Main plugin component.
@@ -26,15 +27,17 @@ import { useResourceCommands } from "./hooks/useResourceCommands";
  *
  * @returns {JSX.Element} Notices component to render snackbar notifications
  */
-const SearchResourcesCommands = () => {
+const SearchResourcesCommands: FC = () => {
 	// Register dynamic search commands that appear based on user input
 	useCommandLoader({
 		name: "search-resources-commands/resources-search-shortcuts",
-		hook: getResourceCommandsSearch(),
+		hook: useResourceCommandsSearch,
 	});
 
 	// Register static commands for each resource
 	useResourceCommands();
+
+	return null;
 };
 
 export default SearchResourcesCommands;

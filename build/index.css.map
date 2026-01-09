@@ -1,1 +1,0 @@
-{"version":3,"file":"index.css","mappings":";;;AAAA;IACI,6BAA6B;AACjC","sources":["webpack://search-resources-commands/./src/styles.css"],"sourcesContent":[".search-resources-commands-notices .components-snackbar-list {\n    position: relative !important;\n}\n\n"],"names":[],"ignoreList":[],"sourceRoot":""}

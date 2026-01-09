@@ -11,7 +11,16 @@
  */
 import { help, pages, plugins, code, lifesaver, video } from "@wordpress/icons";
 
-export const RESOURCES = [
+export interface Resource {
+	type: 'handbook' | 'site';
+	prefix: string;
+	name: string;
+	url: string;
+	icon: JSX.Element;
+	key: string;
+}
+
+export const RESOURCES: Resource[] = [
 	{
 		type: "handbook",
 		prefix: "!b",

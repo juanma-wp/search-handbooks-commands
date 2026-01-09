@@ -25,11 +25,16 @@ const COMMAND_PALETTE_INPUT_SELECTOR = '.commands-command-menu__container input[
  * @param {HTMLInputElement} inputElement - The input element to modify
  * @param {string} value - The value to set
  */
-const setReactInputValue = (inputElement, value) => {
+const setReactInputValue = (inputElement: HTMLInputElement, value: string): void => {
 	const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
 		window.HTMLInputElement.prototype,
 		'value'
-	).set;
+	)?.set;
+
+	if (!nativeInputValueSetter) {
+		return;
+	}
+
 	nativeInputValueSetter.call(inputElement, value);
 
 	const inputEvent = new Event('input', { bubbles: true });
@@ -46,12 +51,12 @@ const setReactInputValue = (inputElement, value) => {
  * 4. Focuses the input and selects the placeholder text
  *
  * @param {string} resourcePrefix - The resource prefix (e.g., "!b", "!t")
- * @param {number} [delay=100] - Delay in milliseconds before executing
+ * @param {number} [delay=100] - Delay in milliseconds to wait for the command palette to render in the DOM
  * @returns {number} Timeout ID for potential cleanup
  */
-export const prefillCommandPalette = (resourcePrefix, delay = 100) => {
-	return setTimeout(() => {
-		const commandInput = document.querySelector(COMMAND_PALETTE_INPUT_SELECTOR);
+export const prefillCommandPalette = (resourcePrefix: string, delay: number = 100): number => {
+	return window.setTimeout(() => {
+		const commandInput = document.querySelector<HTMLInputElement>(COMMAND_PALETTE_INPUT_SELECTOR);
 
 		if (!commandInput) {
 			return;

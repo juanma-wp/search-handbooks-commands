@@ -15,6 +15,7 @@ import { store as noticesStore } from "@wordpress/notices";
 import { __ } from "@wordpress/i18n";
 import { ALL_RESOURCES } from "../constants/resources";
 import { prefillCommandPalette } from "../utils/commandPaletteHelper";
+import type { Command } from '@wordpress/commands';
 
 /**
  * Registers static commands for each resource.
@@ -24,11 +25,11 @@ import { prefillCommandPalette } from "../utils/commandPaletteHelper";
  *
  * @returns {void}
  */
-export const useResourceCommands = () => {
+export const useResourceCommands = (): void => {
 	const { open } = useDispatch(commandsStore);
 	const { createInfoNotice } = useDispatch(noticesStore);
 
-	const commands = ALL_RESOURCES.map((resource) => {
+	const commands: Command[] = ALL_RESOURCES.map((resource) => {
 		const resourceType = resource.type === 'handbook' ? 'Handbook' : '';
 		const label = resourceType
 			? `Search ${resource.name} ${resourceType}`
